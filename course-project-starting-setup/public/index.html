@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		/>
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>PWAGram</title>
+		<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.indigo-pink.min.css"
+		/>
+		<link rel="stylesheet" href="/src/css/app.css" />
+		<link rel="stylesheet" href="/src/css/feed.css" />
+		<!-- link below is for chrome and opera manifest.json should be in the root -->
+		<link rel="manifest" href="./manifest.json" />
+
+		<!-- for safari we have to add some other meta tags to make it similar!! to pwa -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="apple-mobile-web-app-title" content="PWAGram" />
+		<link rel="apple-touch-icon" href="./src/images/icons/app-icon-144x144.png" />
+		<link rel="apple-touch-icon" href="./src/images/icons/app-icon-192x192.png" />
+		<link rel="apple-touch-icon" href="./src/images/icons/app-icon-256x256.png" />
+		<link rel="apple-touch-icon" href="./src/images/icons/app-icon-384x384.png" />
+		<!-- for safari we have to add some other meta tags to make it similar!! to pwa -->
+		<!-- for internet explorer -->
+		<meta name="msapplication-TileImage" content="./src/images/icons/app-icon-144x144.png" />
+		<meta name="msapplication-TileColor" content="#fff" />
+		<meta name="theme-color" content="#3f51b5" />
+		<!-- for internet explorer -->
+
+		<!--
+// MANIFEST FILE HAS SOME PROPERTIES LIKE:
+// 1-name => FOR LONG NAME IN SPLASH SCREEM
+// 2-short_name => short name for app if there is not enough room
+// 3-start_url => which page should load when user did open your app.should be a path
+// 4-scope => which pages are included in pwa if we want all of them just type'.'
+// 5-display => how the app should load once we opened it the typical value is 'standalone' or 'fullscreen' ot 'browser'that hides the url bar
+// 6-background_color => background color while loading
+// 7-theme_color
+// 8-description => it will not shown in so many places but write a desc what your app is about
+// 9-dir =>'ltr' or 'rtl'
+// 10-lang => main language of your app
+// 11-orientation => it specifies that in which orientation your app should be open typicall:'portrait-primary'
+// 12-icons => set of icons for displaying on home page. it is an array of objects and each object contains:
+//      a-src=>path of the image
+//      b-type
+//      c-size => browser choose the best one for given device '48*48' or '128*128' and '512*512' for large screens
+-->
+	</head>
+	<body>
+		<div id="app">
+			<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+				<header class="mdl-layout__header">
+					<div class="mdl-layout__header-row">
+						<!-- Title -->
+						<span class="mdl-layout-title">PWAGram</span>
+						<!-- Add spacer, to align navigation to the right -->
+						<div class="mdl-layout-spacer"></div>
+						<!-- Navigation. We hide it in small screens. -->
+						<nav class="mdl-navigation mdl-layout--large-screen-only">
+							<a class="mdl-navigation__link" href="/">Feed</a>
+							<a class="mdl-navigation__link" href="/help">Help</a>
+							<div class="drawer-option">
+								<button
+									class="enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent"
+								>
+									Enable Notifications
+								</button>
+							</div>
+						</nav>
+					</div>
+				</header>
+				<div class="mdl-layout__drawer">
+					<span class="mdl-layout-title">PWAGram</span>
+					<nav class="mdl-navigation">
+						<a class="mdl-navigation__link" href="/">Feed</a>
+						<a class="mdl-navigation__link" href="/help">Help</a>
+						<div class="drawer-option">
+							<button
+								class="enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent"
+							>
+								Enable Notifications
+							</button>
+						</div>
+					</nav>
+				</div>
+				<main class="mdl-layout__content mat-typography">
+					<div id="create-post">
+						<form>
+							<div class="input-section mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+								<input class="mdl-textfield__input" type="text" id="title" />
+								<label class="mdl-textfield__label" for="title" name="title">Title</label>
+							</div>
+							<div
+								class="input-section mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
+								id="manual-location"
+							>
+								<input class="mdl-textfield__input" type="text" id="location" />
+								<label class="mdl-textfield__label" for="location" name="location">Location</label>
+							</div>
+							<br />
+							<div>
+								<button
+									class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent"
+									type="submit"
+									id="post-btn"
+								>
+									Post!
+								</button>
+							</div>
+							<br />
+							<div>
+								<button
+									class="mdl-button mdl-js-button mdl-button--fab"
+									id="close-create-post-modal-btn"
+									type="button"
+								>
+									<i class="material-icons">close</i>
+								</button>
+							</div>
+						</form>
+					</div>
+					<img src="/src/images/main-image.jpg" alt="Explore the City" class="main-image" />
+					<div class="page-content">
+						<h5 class="text-center mdl-color-text--primary">Share your Moments</h5>
+						<div id="shared-moments"></div>
+						<div id="shared-moments"></div>
+					</div>
+					<div class="floating-button">
+						<button
+							class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"
+							id="share-image-button"
+						>
+							<i class="material-icons">add</i>
+						</button>
+					</div>
+					<div
+						id="confirmation-toast"
+						aria-live="assertive"
+						aria-atomic="true"
+						aria-relevant="text"
+						class="mdl-snackbar mdl-js-snackbar"
+					>
+						<div class="mdl-snackbar__text"></div>
+						<button type="button" class="mdl-snackbar__action"></button>
+					</div>
+				</main>
+			</div>
+		</div>
+		<script defer src="/src/js/material.min.js"></script>
+		<script src="./src/js/app.js"></script>
+		<script src="./src/js/feed.js"></script>
+	</body>
+</html>
